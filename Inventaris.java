@@ -1,27 +1,50 @@
+import java.util.ArrayList;
+
 public class Inventaris {
-    private Barang[] daftarBarang;
-    private int jumlahBarang; 
-    
-    public Inventaris(int kapasitas) {
-        daftarBarang = new Barang[kapasitas];
-        jumlahBarang = 0;
+    private ArrayList<Barang> daftarBarang = new ArrayList<>();
+
+    public void tambahBarang(Barang b) {
+        daftarBarang.add(b);
+        System.out.println("Barang berhasil ditambahkan!");
     }
 
-    public void tambahBarang(Barang barang) {
-        if (jumlahBarang < daftarBarang.length) {
-            daftarBarang[jumlahBarang] = barang;
-            jumlahBarang++;
+    public void lihatBarang() {
+        if (daftarBarang.isEmpty()) {
+            System.out.println("Belum ada barang dalam inventaris.");
         } else {
-            System.out.println("Kapasitas penuh! Tidak bisa tambah barang.");
+            System.out.println("=== Daftar Barang ===");
+            for (Barang b : daftarBarang) {
+                System.out.println(b);
+            }
         }
     }
 
-    public void tampilkanBarang() {
-        System.out.println("Daftar Barang di Inventaris:");
-        for (int i = 0; i < jumlahBarang; i++) {
-            System.out.println("- " + daftarBarang[i].getNamaBarang() + " (Stok: " + daftarBarang[i].getStok() + ")");
+    public Barang cariBarang(String kode) {
+        for (Barang b : daftarBarang) {
+            if (b.getKodeBarang().equalsIgnoreCase(kode)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public void updateStok(String kode, int jumlahBaru) {
+        Barang b = cariBarang(kode);
+        if (b != null) {
+            b.setJumlahStok(jumlahBaru);
+            System.out.println("Stok barang berhasil diperbarui.");
+        } else {
+            System.out.println("Barang dengan kode " + kode + " tidak ditemukan.");
+        }
+    }
+
+    public void hapusBarang(String kode) {
+        Barang b = cariBarang(kode);
+        if (b != null) {
+            daftarBarang.remove(b);
+            System.out.println("Barang berhasil dihapus.");
+        } else {
+            System.out.println("Barang dengan kode " + kode + " tidak ditemukan.");
         }
     }
 }
-
-

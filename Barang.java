@@ -1,10 +1,22 @@
 public class Barang {
+    private String kodeBarang;
     private String namaBarang;
-    private int stok;
+    private int jumlahStok;
+    private String lokasi;
 
-    public Barang(String namaBarang, int stok) {
+    public Barang(String kodeBarang, String namaBarang, int jumlahStok, String lokasi) {
+        this.kodeBarang = kodeBarang;
         this.namaBarang = namaBarang;
-        this.stok = stok;
+        this.jumlahStok = jumlahStok;
+        this.lokasi = lokasi;
+    }
+
+    public String getKodeBarang() {
+        return kodeBarang;
+    }
+
+    public void setKodeBarang(String kodeBarang) {
+        this.kodeBarang = kodeBarang;
     }
 
     public String getNamaBarang() {
@@ -15,23 +27,24 @@ public class Barang {
         this.namaBarang = namaBarang;
     }
 
-    public int getStok() {
-        return stok;
+    public int getJumlahStok() {
+        return jumlahStok;
     }
 
-    public void setStok(int stok) {
-        this.stok = stok;
+    public void setJumlahStok(int jumlahStok) {
+        this.jumlahStok = jumlahStok;
     }
 
-    public void tambahStok(int jumlah) {
-        this.stok += jumlah;
+    public String getLokasi() {
+        return lokasi;
     }
 
-    public void kurangiStok(int jumlah) {
-        if (this.stok >= jumlah) {
-            this.stok -= jumlah;
-        } else {
-            System.out.println("Stok tidak cukup untuk " + namaBarang);
-        }
+    public void setLokasi(String lokasi) {
+        this.lokasi = lokasi;
+    }
+
+    public String toString() {
+        return "Kode: " + kodeBarang + ", Nama: " + namaBarang +
+                ", Stok: " + jumlahStok + ", Lokasi: " + lokasi;
     }
 }
